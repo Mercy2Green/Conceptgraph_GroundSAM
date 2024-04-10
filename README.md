@@ -32,3 +32,7 @@ export REPLICA_SEMANTIC_ROOT=path/to/replica-semantic
 export REPLICA_CONFIG_DIR=${CG_FOLDER}/conceptgraph/dataset/dataconfigs/replica
 export TAG2TEXT_PATH=path/to/recognize-anything 
 ```
+
+# Test the concept-graphs
+
+Just follow the instructions of Concept-graphs to test this environment. Since this docker is using --mount to mount some folders(projects), you will need to download these folders(projects) on the Concept-Graphs website and the Grounded-Segment-Anything website. And you will need to download the check point files(.pth).
