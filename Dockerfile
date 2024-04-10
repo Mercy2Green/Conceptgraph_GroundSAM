@@ -1,9 +1,6 @@
 # Matterport3DSimulator
 # Requires nvidia gpu with driver 396.37 or higher
 
-# m2g@m2g:~$ docker run --gpus all --rm -it -v source=$MATTERPORT_DATA_DIR,target=/root/mount/Matterport3DSimulator/data/v1/scans --volume `pwd`:/root/mount/Matterport3DSimulator mattersim:9.2-devel-ubuntu18.04
-
-
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 SHELL ["/bin/bash", "-c"]
@@ -62,11 +59,6 @@ RUN source activate conceptgraph && \
 
 # Grounded-SAM Env
 
-# RUN source activate conceptgraph && \
-#     conda install -y -c conda-forge cudatoolkit-dev
-
-# ENV CUDA_HOME=/opt/conda/envs/conceptgraph
-
 RUN source activate conceptgraph && \
     git clone https://github.com/IDEA-Research/Grounded-Segment-Anything.git --recursive
 
@@ -83,8 +75,6 @@ RUN source activate conceptgraph && \
     python3 -m pip install --upgrade diffusers[torch] \
     pycocotools==2.0.6 matplotlib==3.5.3 \
     onnxruntime==1.14.1 onnx==1.13.1 ipykernel==6.16.2 scipy gradio openai
-    # git submodule update --init --recursive && \
-    # cd grounded-sam-osx && bash install.sh
 
 RUN source activate conceptgraph && \
     git clone https://github.com/xinyu1205/recognize-anything.git --recursive && \
@@ -92,7 +82,6 @@ RUN source activate conceptgraph && \
     pip3 install -r ./requirements.txt && \
     pip3 install --upgrade setuptools pip install -e . && cd ..
 
-# RUN source activate conceptgraph && conda env config vars set GSA_PATH=/Grounded-Segment-Anything
 ENV GSA_PATH=/Grounded-Segment-Anything
 
 # Concept Graphs code
